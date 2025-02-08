@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    background: black;
+    color: white;
+}
+
+/* Background Canvas */
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Landing Page Content */
+#landing {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Typing Animation */
+h1 {
+    font-size: 2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 3px solid white;
+    width: 0;
+    animation: typing 3s steps(40, end) forwards, glow 1.5s infinite alternate;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Glowing Animation */
+@keyframes glow {
+    0% { text-shadow: 0 0 5px #fff; }
+    100% { text-shadow: 0 0 15px #ff4081; }
+}
+
+/* Stylish Button */
+#journey-btn {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 0 10px #ff416c, 0 0 20px #ff4b2b;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Animation */
+#journey-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ff4b2b, 0 0 30px #ff416c;
+}
+
+/* Glowing Effect */
+@keyframes glowing {
+    0% { box-shadow: 0 0 10px #ff416c; }
+    50% { box-shadow: 0 0 20px #ff4b2b; }
+    100% { box-shadow: 0 0 10px #ff416c; }
+}
+
+#journey-btn {
+    animation: glowing 1.5s infinite alternate;
+}

@@ -1,0 +1,102 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    overflow: hidden; /* Removed scrollbar */
+    margin: 0;
+    position: relative;
+}
+
+canvas#stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.timeline-container h1 {
+    margin-top: 30px;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 10px pink;
+}
+
+.timeline-wrapper {
+    width: 100%;
+    overflow: hidden; /* Ensures smooth animation */
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.timeline {
+    display: flex;
+    gap: 150px;
+    padding: 50px;
+    scroll-snap-type: x mandatory;
+    transition: transform 0.5s ease-in-out;
+}
+
+.milestone {
+    flex: 0 0 300px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    scroll-snap-align: start;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.8s ease-in-out;
+    position: relative;
+    box-shadow: 0 0 10px pink;
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 10px pink; }
+    100% { box-shadow: 0 0 20px pink; }
+}
+
+.milestone p {
+    font-size: 1.2rem;
+}
+
+.heart {
+    width: 30px;
+    height: 30px;
+    background: red;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    clip-path: polygon(50% 15%, 100% 50%, 80% 100%, 50% 80%, 20% 100%, 0% 50%);
+    animation: floatUp 3s infinite ease-in-out;
+}
+
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateX(-50%) translateY(0px); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-50px); }
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.button {
+    background: pink;
+    color: black;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+    background: white;
+}
+

@@ -1,0 +1,90 @@
+/* Full-Screen Background */
+body {
+    background: black;
+    overflow: hidden;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+}
+
+/* Center the petal container */
+#petal-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Increase Petal Size */
+.petal {
+    position: absolute;
+    width: 60px; /* Increased size */
+    height: 60px;
+    background-image: url('rose-petal.png'); /* Realistic petal */
+    background-size: cover;
+    opacity: 0.9;
+    animation: fall 6s linear forwards, flutter 3s ease-in-out infinite;
+}
+
+/* Falling Animation */
+@keyframes fall {
+    0% {
+        transform: translateY(-50px) rotate(0deg);
+    }
+    100% {
+        transform: translateY(calc(100vh - 50px)) rotate(360deg);
+    }
+}
+
+/* Fluttering Motion */
+@keyframes flutter {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(20px);
+    }
+}
+
+/* Covering Effect */
+.cover {
+    animation: coverEffect 1s ease-in-out forwards;
+}
+
+@keyframes coverEffect {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Drop Effect */
+.drop {
+    animation: dropEffect 2s ease-in forwards;
+}
+
+@keyframes dropEffect {
+    to {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+}
+
+/* Romantic Message */
+#romantic-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 45px;
+    font-family: 'Dancing Script', cursive;
+    color: pink;
+    text-shadow: 0px 0px 20px rgba(255, 182, 193, 1);
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+}

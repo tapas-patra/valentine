@@ -1,0 +1,218 @@
+/* General Styling */
+body {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Dark Overlay */
+#overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: black;
+    transition: background 1s ease;
+}
+
+/* Centered Message */
+#message-container {
+    display: flex;
+    gap: 15px;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    opacity: 1;
+    position: absolute;
+    top: 35%;
+}
+
+/* Words (Initially Hidden) */
+.word {
+    color: rgba(255, 255, 255, 0);
+    transition: color 1s ease-in-out;
+}
+
+/* Centered Candle Container */
+#candle-container {
+    display: flex;
+    gap: 40px;
+    position: absolute;
+    bottom: 120px;
+}
+
+/* Candle Base */
+.candle {
+    width: 30px;
+    height: 100px;
+    background: linear-gradient(to bottom, #ffd9b3, #c49a6c);
+    border-radius: 10px;
+    position: relative;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: opacity 0.5s ease;
+}
+
+/* Wax Drips */
+.candle::before {
+    content: "";
+    width: 12px;
+    height: 20px;
+    background: #e6b27b;
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+}
+
+/* Flame */
+.flame {
+    width: 15px;
+    height: 30px;
+    background: orange;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: flicker 1s infinite alternate ease-in-out;
+}
+
+/* Candle Glow */
+.glow {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, rgba(255, 200, 100, 0.7) 0%, rgba(0, 0, 0, 0) 80%);
+    border-radius: 50%;
+    top: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+/* Flickering Effect */
+@keyframes flicker {
+    0% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+}
+
+/* Proposal Buttons (Initially Hidden) */
+#button-container {
+    display: flex;
+    gap: 20px;
+    position: absolute;
+    bottom: 50px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+/* Button Styling */
+button {
+    background: white;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: transform 0.2s ease, opacity 0.3s ease;
+}
+
+/* No Button Moves on Hover */
+#no-button:hover, #no-button:focus {
+    position: absolute;
+    left: calc(20px + 200px * (Math.random() - 0.5)); /* Random horizontal movement */
+    top: calc(50px + 100px * (Math.random() - 0.5));  /* Random vertical movement */
+    transition: left 0.3s ease, top 0.3s ease;
+}
+
+/* No Button Disappears on Click */
+#no-button:active {
+    opacity: 0;
+}
+
+
+/* Previous Button */
+#previous-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    font-size: 18px;
+    background: gray;
+    color: white;
+}
+
+
+/* Firework shooting up */
+.firework-container {
+    position: fixed;
+    left: 50%;
+    bottom: 0;
+    width: 3px; /* Increased width */
+    height: 3px; /* Increased height */
+    transition: top 0.5s linear;
+}
+
+/* Firework explosion */
+.firework {
+    position: absolute;
+    width: 20px; /* Increased size */
+    height: 20px; /* Increased size */
+    background: yellow;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px yellow;
+}
+
+/* Firework particles */
+.particle {
+    position: absolute;
+    width: 60px; /* Increased size */
+    height: 60px; /* Increased size */
+    background: white;
+    border-radius: 50%;
+    opacity: 1;
+    animation: fireworkExplode 1.5s ease-out forwards;
+    filter: blur(2px);
+}
+
+/* Firecracker explosion animation */
+@keyframes fireworkExplode {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1.8); /* Increased explosion size */
+        opacity: 0;
+    }
+}
+
+
+/* Love Message */
+.love-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+    font-family: 'Dancing Script', cursive;
+    color: #ff4d4d;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}

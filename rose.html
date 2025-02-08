@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Romantic Rose Petals</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        /* Container for stacking petals */
+        .petal-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .petal {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-image: url('rose-petal.png'); /* Petal Image */
+            background-size: cover;
+            opacity: 0.9;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-120px) rotate(0deg); opacity: 0; } /* Start above screen */
+            10% { opacity: 1; }
+            100% { transform: translateY(calc(100vh - 80px)) rotate(360deg); }
+        }
+
+        .message {
+            position: absolute;
+            font-size: 50px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+            text-shadow: 0 0 20px pink, 0 0 30px red;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        @keyframes waveFall {
+            0% { transform: translateY(0px); opacity: 1; }
+            50% { transform: translateY(50px); opacity: 0.5; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="petal-container"></div>
+    <div class="message">💖 You are my forever love 💖</div>
+
+    <script>
+        const petalContainer = document.querySelector(".petal-container");
+        const petalCount = 120; // Increased for faster coverage
+        let stackedPetals = 0;
+        const petalsPerRow = Math.floor(window.innerWidth / 80);
+
+        function createPetal() {
+            const petal = document.createElement("div");
+            petal.classList.add("petal");
+
+            // Random position & speed
+            const randomX = Math.random() * window.innerWidth;
+            const duration = Math.random() * 3 + 2;  // Faster falling speed (2s to 5s)
+            const delay = Math.random() * 1.5; // Shorter delay
+
+            petal.style.left = `${randomX}px`;
+            petal.style.animationDuration = `${duration}s`;
+            petal.style.animationDelay = `${delay}s`;
+
+            petalContainer.appendChild(petal);
+
+            // Stack the petals
+            setTimeout(() => {
+                petal.style.animation = "none";
+                const stackRow = Math.floor(stackedPetals / petalsPerRow);
+                const xOffset = (stackedPetals % petalsPerRow) * 80;
+                const yOffset = stackRow * 8;
+
+                petal.style.transform = `translate(${xOffset}px, calc(100vh - ${yOffset}px)) rotate(${Math.random() * 30 - 15}deg)`;
+                stackedPetals++;
+
+                // Drop all petals when the screen is covered
+                if (stackedPetals >= petalCount) {
+                    dropPetals();
+                }
+            }, duration * 1000);
+        }
+
+        function dropPetals() {
+            const petals = document.querySelectorAll(".petal");
+            petals.forEach((petal, index) => {
+                petal.style.animation = `waveFall 2.5s ease-in-out ${index * 0.02}s forwards`; // Faster drop
+            });
+
+            // Reveal message after petals drop
+            setTimeout(() => {
+                document.querySelector(".message").style.opacity = 1;
+            }, 2500);
+        }
+
+        // Generate petals at a **much faster rate**
+        setInterval(createPetal, 50); // Faster generation
+    </script>
+</body>
+</html>
